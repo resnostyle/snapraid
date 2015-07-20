@@ -112,7 +112,7 @@ The official site of SnapRAID is:
 <p>
 <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td width="5%"></td><td width="95%">
 <pre>
-<a href="http://snapraid.sourceforge.net">http://snapraid.sourceforge.net</a>
+<a href="http://www.snapraid.it/">http://www.snapraid.it/</a>
 </pre>
 </td></tr></table>
 <h2><a name="3">3</a> 
@@ -217,8 +217,8 @@ disk d3 /mnt/disk3/
 </pre>
 </td></tr></table>
 <p>
-If you are in Windows, you should use drive letters and backslashes
-instead of slashes, and if you like, also file extensions.
+If you are in Windows, you should use the Windows path format, with drive
+letters and backslashes instead of slashes.
 <p>
 <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td width="5%"></td><td width="95%">
 <pre>
@@ -229,6 +229,15 @@ content G:\array\snapraid.content
 disk d1 F:\array\
 disk d2 G:\array\
 disk d3 H:\array\
+</pre>
+</td></tr></table>
+<p>
+If you have many disks, and you run out of drive letters, you can mount
+disks directly in sub folders. See:
+<p>
+<table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td width="5%"></td><td width="95%">
+<pre>
+https://www.google.com/search?q=Windows+mount+point
 </pre>
 </td></tr></table>
 <p>
@@ -587,6 +596,9 @@ errors encountered while scrubbing.
 Note that the information presented refers at the latest time you
 run "sync". Later modifications are not taken into account.
 <p>
+If bad blocks were detected, their block numbers are listed.
+To fix them, you can use the "fix -e" command.
+<p>
 Nothing is modified.
 <h3><a name="5.2">5.2</a> 
 smart
@@ -718,6 +730,7 @@ are marked as bad in the "content" file.
 These bad blocks are listed in "status", and can be fixed with "fix -e".
 After the fix, at the next scrub they will be rechecked, and if found
 corrected, the bad mark will be removed.
+To scrub only the bad blocks, you can use the "scrub -p 0" command.
 <p>
 It's recommended to run "scrub" on a synced array, to avoid to have
 reported error caused by unsynced data. These errors are recognized
@@ -1085,9 +1098,10 @@ This option can be used only with "sync".
 -l, --log FILE
 </strong></td></tr><tr><td>
 Write a detailed log in the specified file.
-If this option is not specified, the warnings and not fatal
-errors are printed on the screen, likely resulting in too much
-output in case of many errors.
+If this option is not specified, unexpected errors are printed
+on the screen, likely resulting in too much output in case of
+many errors. When -l, --log is specified, on the screen, go only
+fatal errors that makes SnapRAID to stop progress.
 If the path starts with '&gt;&gt;' the file is opened
 in append mode. Occurrences of '%D' and '%T' in the name are
 replaced with the date and time in the format YYYYMMDD and
@@ -1148,6 +1162,9 @@ lose the entire system.
 -v, --verbose
 </strong></td></tr><tr><td>
 Prints more information on the screen.
+If specified one time, it prints excluded files
+and more stats.
+This option has no effect on the log files.
 </td></tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="2">
@@ -1158,7 +1175,8 @@ Prints less information on the screen.
 If specified one time, removes the progress bar, if two
 times, the running operations, three times, the info
 messages, four times the status messages.
-Fatal errors are always printed.
+Fatal errors are always printed on the screen.
+This option has no effect on the log files.
 </td></tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="2">
