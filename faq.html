@@ -582,15 +582,20 @@ snapraid sync
 
 <a id="remdatadisk"><h3>How can I remove a data disk from an existing array?</h3></a>
 <p>
-To remove a data disk from the array, change in the configuration file the related "disk" option to point
-to an empty directory, and then run a "sync" command with the "-E, --force-empty" option:
+To remove a data disk from the array do:
+</p>
+<ul>
+<li>Change in the configuration file the related "disk" option to point to an empty directory</li>
+<li>Remove from the configuration file any "content" option pointing to such disk</li>
+<li>Run a "sync" command with the "-E, --force-empty" option:
 <pre>
 snapraid sync -E
 </pre>
-The "-E" option tells at SnapRAID to proceed even when detecting an empty disk.
-</p>
+The "-E" option tells at SnapRAID to proceed even when detecting an empty disk.</li>
+<li>When the "sync" command terminates, remove the "disk" option from the configuration file.</li>
+</ul>
 <p>
-When the "sync" command terminates, remove the "disk" option from the configuration file.
+Your array is now without any reference to the removed disk.
 </p>
 
 <a id="addpardisk"><h3>How can I add an additional parity disk to an existing array?</h3></a>
