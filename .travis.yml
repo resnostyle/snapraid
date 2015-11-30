@@ -3,7 +3,9 @@ sudo: false
 
 language: c
 
-script: autoreconf -i && ./configure && make distcheck
+script: 
+   - autoreconf -i && ./configure && make distcheck
+   - package_cloud push resnostyle/snapraid/ubuntu/debs snapraid
 
 compiler:
   - clang
@@ -14,6 +16,3 @@ os:
 
 before_install:
   - gem install package_cloud
-
-script:
-    - package_cloud push resnostyle/snapraid/ubuntu/debs snapraid
