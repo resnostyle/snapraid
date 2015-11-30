@@ -21,4 +21,4 @@ deployment:
   production:
     branch: master
     commands:
-      - package_cloud push resnostyle/snapraid 
+      - package_cloud push resnostyle/snapraid snapraid
