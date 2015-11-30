@@ -1,8 +1,4 @@
 # Travis CI configuration file
-dependencies:
-  pre:
-    - gem install package_cloud
-    
 sudo: false
 
 language: c
@@ -15,10 +11,9 @@ compiler:
 
 os:
   - linux
-  - osx
 
-deployment:
-  production:
-    branch: master
-    commands:
-      - package_cloud push resnostyle/snapraid snapraid
+before_install:
+  - gem install package_cloud
+
+script:
+    - package_cloud push resnostyle/snapraid/ubuntu snapraid
