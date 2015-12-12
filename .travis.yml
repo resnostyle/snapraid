@@ -5,7 +5,7 @@ language: c
 
 script: 
    - ./autogen.sh && ./configure && make 
-   - package_cloud push resnostyle/snapraid/ubuntu/debs snapraid
+   - package_cloud push resnostyle/snapraid/ubuntu/debs /home/travis/build/resnostyle/snapraid
 
 compiler:
   - clang
