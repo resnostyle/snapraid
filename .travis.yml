@@ -4,7 +4,7 @@ sudo: false
 language: c
 
 script: 
-   - ./configure && make &&  make check & make install
+   - ./autogen.sh && ./configure && make &&  make check & make install
    - package_cloud push resnostyle/snapraid/ubuntu/debs snapraid
 
 compiler:
